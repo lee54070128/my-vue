@@ -27,4 +27,4 @@ cnpm install style-loader -S
 npm install url-loader  
 npm install file-loader
 npm install --save element-ui -G
-npm install all
+npm install
