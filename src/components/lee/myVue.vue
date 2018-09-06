@@ -69,7 +69,10 @@
         </el-menu>
     </el-aside>
     <el-container>
-      <el-main><div id="myvue">欢迎来到{{message}}! </div></el-main>
+        <el-main>
+          <div id="myvue">欢迎来到{{message}}! </div>
+          <router-view></router-view>
+        </el-main>
       <el-footer>Footer</el-footer>
     </el-container>
   </el-container>

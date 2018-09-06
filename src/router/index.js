@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/home'
+import Main from '@/components/main'
 import myVue from '@/components/lee/myVue'
+import Home from '@/components/home'
 
 Vue.use(Router)
 
@@ -9,14 +10,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: Home,
+      component: Main,
       children:[
         {
           path: '/',
-          name: 'main',
-          component:{
-            template: '<div id="myvue">欢迎来到主页! </div>'
-          }
+          name: 'home',
+          component:Home
         },
         {
           path: 'lee',
