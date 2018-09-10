@@ -13,42 +13,20 @@
                 </span>
             </el-menu-item>
             <el-submenu index="2">
-                <template slot="title"><i class="el-icon-message"></i>项目</template>
-                <!-- <el-submenu index="1-1">
-                    <template slot="title">爱奇艺号</template>
-                    <el-menu-item-group>
-                        <el-menu-item index="1-1-1">首页</el-menu-item>
-                        <el-menu-item index="1-1-2">自媒体</el-menu-item>
-                        <el-menu-item index="1-1-2">视频</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-                <el-submenu index="1-2">
-                    <template slot="title">文学</template>
-                    <el-menu-item-group>
-                        <el-menu-item index="1-1-1">首页</el-menu-item>
-                        <el-menu-item index="1-1-2">阅读</el-menu-item>
-                        <el-menu-item index="1-1-2">支付</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-                <el-submenu index="1-3">
-                    <template slot="title">飞鸽</template>
-                    <el-menu-item-group>
-                        <el-menu-item index="1-1-1">发送消息</el-menu-item>
-                        <el-menu-item index="1-1-2">人群管理</el-menu-item>
-                        <el-menu-item index="1-1-2">审批消息</el-menu-item>
-                        <el-menu-item index="1-1-2">业务线管理</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-            </el-submenu> -->
+                <template slot="title"><i class="el-icon-message"></i>
+                项目
+                <i class="el-icon-plus s_add_project"></i>
+                <!-- <el-button icon="el-icon-plus" size="mini" plain circle></el-button> -->
+                </template>
                 <el-submenu v-for="(project,index) in this.routers.projects" :key="index" :index="project.index">
                     <template slot="title">
-                        <i :class="project.icon"></i>
                         <router-link :to = "{name:'project_page',params:{project:project.projId}}" >
+                            <i class="el-icon-menu"></i>
                             {{project.name}}
                         </router-link>
                     </template>
                     <el-menu-item-group>
-                        <el-menu-item v-for="(suit,index) in project.sons" :key="index">
+                        <el-menu-item v-for="(suit,index) in project.sons" :key="index" :index="suit.index">
                             <router-link :to = "{name:'p_suit_page',params:{project:project.projId,page:suit.pageId}}" >
                                 {{suit.name}}
                             </router-link>
@@ -58,46 +36,22 @@
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title"><i class="el-icon-menu"></i>辅助方法</template>
-                <el-submenu v-for="(method,index) in this.routers.methods" :key="index">
+                <el-submenu v-for="(method,index) in this.routers.methods" :key="index" :index="method.index">
                     <template slot="title">
-                        <i :class="method.icon"></i>
-                        <router-link :to = "{name:'method_page',params:{method:method.methId}}" >
+                        <i class="el-icon-menu"></i>
+                        <router-link :to = "{name:'method_page',params:{method:method.suitId}}" >
                             {{method.name}}
                         </router-link>
                     </template>
                     <el-menu-item-group>
                         <el-menu-item v-for="(suit,index) in method.sons" :key="index" :index="suit.index">
-                            <router-link :to = "{name:'m_method_page',params:{method:method.methId,page:suit.pageId}}" >
+                            <router-link :to = "{name:'m_method_page',params:{method:method.suitId,page:suit.pageId}}" >
                                 {{suit.name}}
                             </router-link>
                         </el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
             </el-submenu>
-                <!-- <el-submenu index="2-1">
-                    <template slot="title">公共方法</template>
-                    <el-menu-item-group>
-                        <el-menu-item index="2-1-1">计算MD5</el-menu-item>
-                        <el-menu-item index="2-1-2">排序</el-menu-item>
-                        <el-menu-item index="2-1-3">URL编码</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-                <el-submenu index="2-2">
-                    <template slot="title">爱奇艺号</template>
-                    <el-menu-item-group>
-                        <el-menu-item index="2-1-1">查询ES</el-menu-item>
-                        <el-menu-item index="2-1-2">审核视频</el-menu-item>
-                        <el-menu-item index="2-1-3">登陆爱奇艺号</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-                <el-submenu index="2-3">
-                    <template slot="title">飞鸽</template>
-                    <el-menu-item-group>
-                        <el-menu-item index="2-1-1">计算sign</el-menu-item>
-                        <el-menu-item index="2-1-2">登陆飞鸽</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu> -->
-            <!-- </el-submenu> -->
             <el-menu-item index="4">
                 <i class="el-icon-setting"></i>
                 <span slot="title">
@@ -119,32 +73,27 @@
 </template>
 
 <script>
+import API from '../api/api_common' 
 const routers ={
     'projects':[
         {
             'index':'2-1',
             "name": "爱奇艺号",
-            "path": "/",
             "projId":"iqiyi",
-            "icon": "el-icon-menu",
-            "key": true,
             "sons": [
                 {
                     'index':'2-1-1',
                     "name": "首页",
-                    "path": "/",
                     "pageId":"home"
                 },
                 {
                     'index':'2-1-2',
                     "name": "自媒体",
-                    "path": "/",
                     "pageId":"zimeiti"
                 },
                 {
                     'index':'2-1-3',
                     "name": "视频",
-                    "path": "/",
                     "pageId":"video"
                 }
             ]
@@ -152,27 +101,21 @@ const routers ={
         {
             'index':'2-2',
             "name": "文学",
-            "path": "/",
             "projId":"wenxue",
-            "icon": "el-icon-menu",
-            "key": true,
             "sons": [
                 {
                     'index':'2-2-1',
                     "name": "首页",
-                    "path": "/",
                     "pageId":"home"
                 },
                 {
                     'index':'2-2-2',
                     "name": "阅读",
-                    "path": "/",
                     "pageId":"yuedu"
                 },
                 {
                     'index':'2-2-3',
                     "name": "支付",
-                    "path": "/",
                     "pageId":"pay"
                 }
             ]
@@ -180,33 +123,26 @@ const routers ={
         {
             'index':'2-3',
             "name": "飞鸽",
-            "path": "/",
             "projId":"feige",
-            "icon": "el-icon-menu",
-            "key": true,
             "sons": [
                 {
                     'index':'2-3-1',
                     "name": "发送消息",
-                    "path": "/",
                     "pageId":"send_notice"
                 },
                 {
                     'index':'2-3-2',
                     "name": "人群管理",
-                    "path": "/",
                     "pageId":"people"
                 },
                 {
                     'index':'2-3-3',
                     "name": "审批消息",
-                    "path": "/",
                     "pageId":"shenpi"
                 },
                 {
                     'index':'2-3-4',
                     "name": "业务线管理",
-                    "path": "/",
                     "pageId":"biz_line"
                 }
             ]
@@ -216,10 +152,7 @@ const routers ={
         {
             'index':'3-1',
             "name": "公共方法",
-            "path": "/",
-            "methId":"public",
-            "icon": "el-icon-menu",
-            "key": true,
+            "suitId":"public",
             "sons": [
                 {
                     'index':'3-1-1',
@@ -241,10 +174,7 @@ const routers ={
         {
             'index':'3-2',
             "name": "爱奇艺号",
-            "path": "/",
-            "methId":"iqiyi",
-            "icon": "el-icon-menu",
-            "key": true,
+            "suitId":"iqiyi",
             "sons": [
                 {
                     'index':'3-2-1',
@@ -265,10 +195,7 @@ const routers ={
         },{
             'index':'3-3',
             "name": "飞鸽",
-            "path": "/",
-            "methId":"feige",
-            "icon": "el-icon-menu",
-            "key": true,
+            "suitId":"feige",
             "sons": [
                 {
                     'index':'3-3-1',
@@ -287,11 +214,29 @@ const routers ={
 export default {
   name: 'Home',
 //   routers:routers,
-  data () {
-    return {
-        "routers":routers
+    data () {
+        return {
+            routers:{}
+        }
+    },
+        
+    beforeCreate:function(){
+        console.log("请求侧边栏信息！")
+        let that = this;
+        API.getNavConf({}).then(function(result){
+            if (result && parseInt(result.code) == 1000) {
+                that.routers=result.data
+                // that.routers=JSON.parse(result.data)
+            }else{
+                that.$message.error({showClose: true,message: '侧边栏配置获取异常！', duration: 2000});
+            }
+        },function(err){
+            that.$message.error({showClose: true,message: '接口请求失败！', duration: 2000});
+        }).catch(function(error){
+            console.log(error);
+          that.$message.error({showClose: true, message: '接口请求异常', duration: 2000});
+        });
     }
-  }
 }
 
 
@@ -344,7 +289,13 @@ export default {
         font-size: 28px;
     }
     a {
-      text-decoration-line: none
+        text-decoration-line: none
+    }
+    .s_add_project{
+        float: right;
+        vertical-align: middle;
+        padding: 20px;
+
     }
 </style>
 

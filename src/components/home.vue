@@ -81,6 +81,8 @@ export default {
         return {
             addProjDialogFormVisible: false,
             addSuitDialogFormVisible: false,
+            formLabelWidth: '120px',
+            addLoading: false,
             projs: projs,
             p_form: {
                 id: '',

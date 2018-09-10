@@ -21,6 +21,8 @@ npm run build --report
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ##安装库
+npm install vue
+cnpm install vue-router --save
 npm install --save normalize.css
 npm install axios
 cnpm install style-loader -S
