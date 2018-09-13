@@ -9,6 +9,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 /* eslint-disable no-new */
+
+// Vue.http.options.emulateJSON=true;
+// Vue.http.options.emulateHTTP = true;
 new Vue({
   el: '#app',
   router,

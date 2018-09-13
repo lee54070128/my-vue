@@ -5,6 +5,10 @@ export default {
   addProject: params => {
     return API.POST('/api/add_new_proj', params)
   },
+  //获取所有项目信息
+  getAllProject:params =>{
+    return API.GET('/api/get_all_project', params)
+  },
   //增加一个测试用例集
   addCaseSuit: params => {
     return API.POST('/api/add_new_case_suit', params)

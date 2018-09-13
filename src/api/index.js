@@ -2,11 +2,12 @@
  * Created by jerry on 2017/6/9.
  */
 import axios from 'axios'
+// import Vue from 'vue';
 
 axios.defaults.withCredentials = false;
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';//配置请求头
-
+// axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';//配置请求头
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';//配置请求头
 //添加一个请求拦截器
 // axios.interceptors.request.use(function (config) {
 //   console.dir(config);
@@ -31,6 +32,9 @@ let base = 'http://127.0.0.1:5000';  //接口代理地址参见：config/index.j
 //通用方法
 export const GET = (url, params) => {
   return axios.get(`${base}${url}`, {params: params}).then(res => res.data)
+}
+export const OPTIONS = (url, params) => {
+  return axios.options(`${base}${url}`, params).then(res => res.data)
 }
 
 export const POST = (url, params) => {
